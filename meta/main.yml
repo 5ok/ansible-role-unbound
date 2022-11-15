@@ -1,0 +1,23 @@
+---
+galaxy_info:
+  role_name: unbound
+  namespace: 5ok
+  description: "unbound dns service"
+  author: Peter Hudec
+  company: "5ko s.r.o."
+  license: "License (BSD, MIT)"
+  min_ansible_version: 2.4
+  platforms:
+    - name: EL
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
+  galaxy_tags:
+    - system
+    - dns
+    - unbound

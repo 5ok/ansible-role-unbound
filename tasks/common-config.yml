@@ -1,0 +1,51 @@
+---
+
+- name: "Create configuration directories"
+  ansible.builtin.file:
+    path: "{{ dir }}"
+    state: directory
+    owner: root
+    group: "{{ unbound_group }}"
+    mode: "0750"
+  loop:
+    - "{{ unbound_config_path }}"
+    - "{{ unbound_config_path }}/conf.d"
+    - "{{ unbound_config_path }}/keys.d"
+  loop_control:
+    loop_var: dir
+
+
+- name: "Create user specified directories"
+  ansible.builtin.file:
+    path: "{{ dir.path }}"
+    state: "{{ dir.state | default('directory') }}"
+    owner: "{{ dir.owner | default('root') }}"
+    group: "{{ dir.group | default(unbound_group) }}"
+    mode: "{{ dir.mode | default('0750') }}"
+  loop: "{{ unbound_dirs }}"
+  loop_control:
+    loop_var: dir
+
+- name: "Create user specified files"
+  ansible.builtin.template:
+    src: "{{ file.src }}"
+    dest: "{{ file.dest }}"
+    owner: "{{ file.owner | default('root') }}"
+    group: "{{ file.group | default(unbound_group) }}"
+    mode: "{{ file.mode | default('0640') }}"
+  loop: "{{ unbound_dirs }}"
+  loop_control:
+    loop_var: file
+  notify:
+    - restart unbound
+
+- name: "Create main configuration file"
+  ansible.builtin.template:
+    src: "unbound.conf.j2"
+    dest: "{{ unbound_config_path }}/unbound.conf"
+    owner: root
+    group: "{{ unbound_group }}"
+    mode: "0640"
+    validate: unbound-checkconf %s
+  notify:
+    - restart unbound

@@ -1,0 +1,15 @@
+---
+
+unbound_user: "{{ __unbound_user }}"
+unbound_group: "{{ __unbound_group }}" 
+
+unbound_service_name: "{{ __unbound_service_name }}"
+unbound_service_state: started
+unbound_service_enabled: true
+
+unbound_packages: "{{ __unbound_packages }}"
+
+unbound_config_path: "{{ __unbound_config_path }}"
+
+unbound_dirs: []
+unbound_files: []

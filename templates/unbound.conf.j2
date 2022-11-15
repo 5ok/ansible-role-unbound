@@ -1,0 +1,6 @@
+{{ ansible_managed | comment }}
+
+# as the configuration file is complex
+# specify all files in include configuration files
+
+include-toplevel: "{{ unbound_config_path }}/conf.d/*.conf"

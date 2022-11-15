@@ -1,0 +1,9 @@
+---
+
+- name: "Install unbound packages"
+  ansible.builtin.apt:
+    name: "{{ package.name }}"
+    state: "{{ package.state }}"
+  loop: "{{ unbound_packages }}"
+  loop_control:
+    loop_var: package

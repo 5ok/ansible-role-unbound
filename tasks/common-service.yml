@@ -1,0 +1,6 @@
+---
+- name: "Ensure unbound started/stopped"
+  ansible.builtin.service:
+    name: "{{ unbound_service_name }}"
+    state: "{{ unbound_service_state }}"
+    enabled: "{{ unbound_service_enabled }}"

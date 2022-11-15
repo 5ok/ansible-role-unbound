@@ -1,0 +1,12 @@
+---
+
+unbound_supported: true
+
+__unbound_user: unbound
+__unbound_group: unbound
+
+__unbound_packages:
+  - { name: 'unbound', state: 'present' }
+
+__unbound_service_name: unbound
+__unbound_config_path: /etc/unbound
