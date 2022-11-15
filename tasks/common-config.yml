@@ -33,7 +33,7 @@
     owner: "{{ file.owner | default('root') }}"
     group: "{{ file.group | default(unbound_group) }}"
     mode: "{{ file.mode | default('0640') }}"
-  loop: "{{ unbound_dirs }}"
+  loop: "{{ unbound_files }}"
   loop_control:
     loop_var: file
   notify:
