@@ -1,5 +1,5 @@
 ---
-- name: restart unbound
+- name: restart unbound   # noqa name[casing]
   ansible.builtin.systemd:
     name: "{{ unbound_service_name }}"
     state: restarted

@@ -6,7 +6,7 @@ galaxy_info:
   author: Peter Hudec
   company: "5ko s.r.o."
   license: "License (BSD, MIT)"
-  min_ansible_version: 2.4
+  min_ansible_version: 2.4  # noqa schema[meta]
   platforms:
     - name: EL
       versions:

@@ -1,7 +1,7 @@
 ---
 
 unbound_user: "{{ __unbound_user }}"
-unbound_group: "{{ __unbound_group }}" 
+unbound_group: "{{ __unbound_group }}"
 
 unbound_service_name: "{{ __unbound_service_name }}"
 unbound_service_state: started

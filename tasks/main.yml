@@ -7,28 +7,38 @@
     - "os-{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yml"
     - "os-{{ ansible_os_family }}.yml"
     - "os-default.yml"
-
   tags:
     - always
 
 - name: "Install packages"
-  ansible.builtin.include_tasks: packages-{{ ansible_os_family }}.yml
-  tags:
-    - unbound
-    - unbound:packages
+  ansible.builtin.include_tasks:
+    file: packages-{{ ansible_os_family }}.yml
+    apply:
+      tags:
+        - unbound
+        - unbound:packages
   when: unbound_supported
+  tags:
+    - always
 
 - name: "Configure unbound"
-  ansible.builtin.include_tasks: common-config.yml
-  tags:
-    - unbound
-    - unbound:config
+  ansible.builtin.include_tasks:
+    file: common-config.yml
+    apply:
+      tags:
+        - unbound
+        - unbound:config
   when: unbound_supported
+  tags:
+    - always
 
 - name: "Set systemd service"
-  ansible.builtin.include_tasks: common-service.yml
-  tags:
-    - unbound
-    - unbound:setup
+  ansible.builtin.include_tasks:
+    file: common-service.yml
+    apply:
+      tags:
+        - unbound
+        - unbound:setup
   when: unbound_supported
-
+  tags:
+    - always
